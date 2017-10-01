@@ -10,14 +10,15 @@ using Microsoft.Xna.Framework.Input;
 namespace Game2
 {
     /// <summary>
-    /// Ship Class Definition
+    /// Ship Class Definition for constructing, drawing and updating the Ships
     /// </summary>
     class Ship : DrawableGameComponent
     {
         #region Variables
-        public string Name {get; private set;}
-        public int Punkte {get; private set;}
-        public int Life {get; private set;}
+
+        public string name {get; private set;} // The ships Name
+        public int points {get; private set;}  // For keeping tracks of the points
+        public int life {get; private set;}    // For setting the life of the ship
         public int X = 0;
         public int Y = 0;
         public int D = 4;
@@ -30,25 +31,23 @@ namespace Game2
 
         #region Constructors
         /// <summary>
-        /// Ship erstellen
+        /// Ship Constructor, for creating Ships and setting the parameters.
         /// </summary>
         /// <param name="Name">Name des Schiffs</param>
         /// <param name="Position">Start Position</param>
         /// <param name="Leben">Anzahl an Leben</param>
-        public Ship(Skyraha game, string Name, Vector2 Position, int Life = 100) : base(game)
+        public Ship(Skyraha game, string name, Vector2 Position, int life = 100) : base(game)
         {
             game.Components.Add(this);
 
-            this.Name = Name;
-            this.Life = Life;
+            this.name = name;
+            this.life = life;
 
-
-            this.Texture = game.Content.Load<Texture2D>("Jäger");
+            
+            this.Texture = game.Content.Load<Texture2D>("Jäger");      
 
             X = (int)Position.X - Texture.Width / 2;
             Y = (int)Position.Y - Texture.Height / 2;
-
-
 
 
         }
@@ -57,7 +56,7 @@ namespace Game2
 
         #region Draw Methode
         /// <summary>
-        /// Draw
+        /// Drawing the ship with the given parameters
         /// </summary>
         /// <param name="gameTime"></param>
         public override void Draw(GameTime gameTime)
@@ -73,7 +72,7 @@ namespace Game2
 
         #region Update Method
         /// <summary>
-        /// Draw
+        /// Updater, keeps the position etc. up to date
         /// </summary>
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
@@ -91,7 +90,7 @@ namespace Game2
         /// <param name="totalPoints">All Points of the Player</param>
         public void AddPoints(int totalPoints)    
         {
-            Punkte += totalPoints;
+            points += totalPoints;
         }
 
         /// <summary>
@@ -99,9 +98,9 @@ namespace Game2
         /// </summary>
         public void Kill()                
         {
-            if (Life >0)
+            if (life >0)
             {
-                Life = 0;
+                life = 0;
             }
         }
 
