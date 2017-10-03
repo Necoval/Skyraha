@@ -4,9 +4,9 @@
   <Platform>Windows</Platform>
   <Config />
   <SourceFiles>
-    <File>C:/Users/Agando/documents/visual studio 2017/Projects/Game2/Game2/Content/Jäger.png</File>
-    <File>C:/Users/Agando/documents/visual studio 2017/Projects/Game2/Game2/Content/Schuss.png</File>
-    <File>C:/Users/Agando/documents/visual studio 2017/Projects/Game2/Game2/Content/Feind.png</File>
-    <File>C:/Users/Agando/documents/visual studio 2017/Projects/Game2/Game2/Content/Hintergrund.png</File>
+    <File>C:/Users/Agando/Desktop/Project Code/Skyraha/SkyrahaGame/Game2/Content/Jäger.png</File>
+    <File>C:/Users/Agando/Desktop/Project Code/Skyraha/SkyrahaGame/Game2/Content/Schuss.png</File>
+    <File>C:/Users/Agando/Desktop/Project Code/Skyraha/SkyrahaGame/Game2/Content/Feind.png</File>
+    <File>C:/Users/Agando/Desktop/Project Code/Skyraha/SkyrahaGame/Game2/Content/Hintergrund.png</File>
   </SourceFiles>
 </SourceFileCollection>

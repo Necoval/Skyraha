@@ -47,15 +47,15 @@ namespace Game2
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            
+          /*
             #region Window Settings
-            this.Window.Position = new Point(0, 0);
-            this.Window.IsBorderless = false;
+           
             graphics.IsFullScreen = true;
+            this.Window.IsBorderless = false;
             graphics.ApplyChanges();
 
             #endregion
-            
+            */
             #region Units
 
 

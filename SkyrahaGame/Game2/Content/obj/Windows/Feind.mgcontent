@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Agando/documents/visual studio 2017/Projects/Game2/Game2/Content/Feind.png</SourceFile>
+  <SourceFile>C:/Users/Agando/Desktop/Project Code/Skyraha/SkyrahaGame/Game2/Content/Feind.png</SourceFile>
   <SourceTime>2017-09-28T17:21:15.0051187+02:00</SourceTime>
-  <DestFile>C:/Users/Agando/documents/visual studio 2017/Projects/Game2/Game2/Content/bin/Windows/Feind.xnb</DestFile>
-  <DestTime>2017-09-28T17:27:07.8402998+02:00</DestTime>
+  <DestFile>C:/Users/Agando/Desktop/Project Code/Skyraha/SkyrahaGame/Game2/Content/bin/Windows/Feind.xnb</DestFile>
+  <DestTime>2017-10-03T11:41:41.6351192+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

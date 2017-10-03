@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PipelineBuildEvent xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <SourceFile>C:/Users/Agando/documents/visual studio 2017/Projects/Game2/Game2/Content/Hintergrund.png</SourceFile>
+  <SourceFile>C:/Users/Agando/Desktop/Project Code/Skyraha/SkyrahaGame/Game2/Content/Hintergrund.png</SourceFile>
   <SourceTime>2017-09-29T12:59:20.3060867+02:00</SourceTime>
-  <DestFile>C:/Users/Agando/documents/visual studio 2017/Projects/Game2/Game2/Content/bin/Windows/Hintergrund.xnb</DestFile>
-  <DestTime>2017-09-29T13:00:27.4179253+02:00</DestTime>
+  <DestFile>C:/Users/Agando/Desktop/Project Code/Skyraha/SkyrahaGame/Game2/Content/bin/Windows/Hintergrund.xnb</DestFile>
+  <DestTime>2017-10-03T11:41:42.2051518+02:00</DestTime>
   <Importer>TextureImporter</Importer>
   <ImporterTime>2017-03-01T16:05:36+01:00</ImporterTime>
   <Processor>TextureProcessor</Processor>

@@ -85,7 +85,7 @@ namespace Game2
 
 
         /// <summary>
-        /// Point Summary
+        /// Point Summary , keeps track of the gained Points
         /// </summary>
         /// <param name="totalPoints">All Points of the Player</param>
         public void AddPoints(int totalPoints)    
@@ -94,7 +94,7 @@ namespace Game2
         }
 
         /// <summary>
-        /// Death
+        /// Death Function, kills the Ship if his life points reach zero
         /// </summary>
         public void Kill()                
         {
