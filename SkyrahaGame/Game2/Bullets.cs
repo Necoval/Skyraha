@@ -43,7 +43,6 @@ namespace Game2
             Y = (int)position.Y - Texture.Height / 2;
 
 
-
         }
 
         #region Draw Methode

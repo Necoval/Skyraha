@@ -36,19 +36,19 @@ namespace Game2
             base.Update(gameTime);
             KeyboardState Right = Keyboard.GetState();
             if (Right.IsKeyDown(Keys.D))
-                X += D;
+                this.Position.X += this._Speed;
 
             KeyboardState Up = Keyboard.GetState();
             if (Up.IsKeyDown(Keys.W))
-                Y -= D;
+                this.Position.Y -= this._Speed;
 
             KeyboardState Left = Keyboard.GetState();
             if (Left.IsKeyDown(Keys.A))
-                X -= D;
+                this.Position.X -= this._Speed;
 
             KeyboardState Down = Keyboard.GetState();
             if (Down.IsKeyDown(Keys.S))
-                Y += D;
+                this.Position.Y += this._Speed;
 
             
 

@@ -34,9 +34,8 @@ namespace Game2
 
             this.Texture2 = game.Content.Load<Texture2D>("Feind");
 
-
-            X = (int)Position.X - Texture2.Width / 2;
-            Y = (int)Position.Y - Texture2.Height / 2;
+            // Calculate ship position based on texture size
+            this.Position = Position - new Vector2(_Texture.Width, _Texture.Height) / 2;
 
         }
 
@@ -48,7 +47,7 @@ namespace Game2
         {
 
 
-            ((Skyraha)this.Game).spriteBatch.Draw(Texture2, new Rectangle(X, Y, Texture2.Width, Texture2.Height), (Color.White));
+            ((Skyraha)this.Game).spriteBatch.Draw(Texture2, new Rectangle((int)this.Position.X, (int)this.Position.Y, Texture2.Width, Texture2.Height), (Color.White));
 
 
 
@@ -64,7 +63,7 @@ namespace Game2
         public override void Update(GameTime gameTime)
         {
 
-            Y = Y + speed;
+            this.Position.Y = this.Position.Y + speed;
 
             
 

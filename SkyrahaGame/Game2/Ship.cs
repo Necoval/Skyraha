@@ -12,34 +12,34 @@ namespace Game2
         /// <summary>
         /// The ships name
         /// </summary>
-        public string Name { get; private set; }
+        public string Name { get; protected set; }
 
         /// <summary>
         /// Points of this ship
         /// </summary>
-        public int Points { get; private set; }
+        public int Points { get; protected set; }
 
         /// <summary>
         /// Healthpoints of the ship
         /// </summary>
-        public int Life { get; private set; }
+        public int Life { get; protected set; }
 
         /// <summary>
         /// Position of the ship
         /// </summary>
-        public Vector2 Position { get; private set; }
+        public Vector2 Position;
         #endregion
 
         #region Private Variables
         /// <summary>
         /// Maximum speed of the ship
         /// </summary>
-        private float _Speed = 4;
+        protected float _Speed = 4;
 
         /// <summary>
         /// Texture of this ship
         /// </summary>
-        private Texture2D _Texture;
+        protected Texture2D _Texture;
         #endregion
 
         #region Constructors
