@@ -41,13 +41,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\..\..\Desktop\Project Code\Skyraha\Skyraha.cs" />
     <Compile Include="Enemy.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Ship.cs" />
     <Compile Include="Bullets.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Skyraha.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="MonoGame.Framework">
