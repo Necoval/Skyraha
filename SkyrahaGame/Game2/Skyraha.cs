@@ -21,7 +21,7 @@ namespace Game2
         public int Y;
         Rectangle rectangle1;
         Rectangle rectangle2;
-         
+        private KeyboardState state2;
         //get user's primary screen size...
 
 
@@ -123,12 +123,12 @@ namespace Game2
             #endregion
 
             KeyboardState state1 = Keyboard.GetState();
-            KeyboardState state2 = Keyboard.GetState();
+            
 
 
             
             
-            if (state1.IsKeyUp(Keys.Space) && (state2.IsKeyUp(Keys.Space)))
+            if (state1.IsKeyUp(Keys.Space) && (state2.IsKeyDown(Keys.Space)))
             {
                 new Bullets(this, new Vector2(300,300), 2, 0);
             }
@@ -138,7 +138,7 @@ namespace Game2
                 new Enemy(this, new Vector2(400, -100), 1, 60);
             }
 
-           
+            state2 = state1;
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();

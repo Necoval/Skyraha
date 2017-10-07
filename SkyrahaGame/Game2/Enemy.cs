@@ -14,7 +14,7 @@ namespace Game2
     {
         #region Variables
         private int speed;
-        private Texture2D Texture2;
+        
 
 
 
@@ -32,7 +32,7 @@ namespace Game2
         {
             this.speed = speed;
 
-            this.Texture2 = game.Content.Load<Texture2D>("Feind");
+            this.Texture = game.Content.Load<Texture2D>("Feind");
 
             // Calculate ship position based on texture size
             this.Position = Position - new Vector2(Texture.Width, Texture.Height) / 2;
@@ -47,7 +47,7 @@ namespace Game2
         {
 
 
-            ((Skyraha)this.Game).spriteBatch.Draw(Texture2, new Rectangle((int)this.Position.X, (int)this.Position.Y, Texture2.Width, Texture2.Height), (Color.White));
+            ((Skyraha)this.Game).spriteBatch.Draw(Texture, new Rectangle((int)this.Position.X, (int)this.Position.Y, Texture.Width, Texture.Height), (Color.White));
 
 
 
