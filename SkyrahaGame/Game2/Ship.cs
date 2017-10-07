@@ -34,12 +34,12 @@ namespace Game2
         /// <summary>
         /// Maximum speed of the ship
         /// </summary>
-        protected float _Speed = 4;
+        protected float Speed = 4;
 
         /// <summary>
         /// Texture of this ship
         /// </summary>
-        protected Texture2D _Texture;
+        protected Texture2D Texture;
         #endregion
 
         #region Constructors
@@ -59,10 +59,10 @@ namespace Game2
             this.Life = Life;
 
             // Load default ship-texture
-            this._Texture = Game.Content.Load<Texture2D>("Jäger");
+            this.Texture = Game.Content.Load<Texture2D>("Jäger");
 
             // Calculate ship position based on texture size
-            this.Position = Position - new Vector2(_Texture.Width, _Texture.Height) / 2;
+            this.Position = Position - new Vector2(Texture.Width, Texture.Height) / 2;
 
 
         }
@@ -77,12 +77,12 @@ namespace Game2
         {
             // Draw this ship
             ((Skyraha)this.Game).spriteBatch.Draw(
-                _Texture,
+                Texture,
                 new Rectangle(
                     (int)Position.X,
                     (int)Position.Y,
-                    _Texture.Width,
-                    _Texture.Height),
+                    Texture.Width,
+                    Texture.Height),
                 (Color.White));
 
             base.Draw(gameTime);

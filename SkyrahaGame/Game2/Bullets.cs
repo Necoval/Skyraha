@@ -15,7 +15,7 @@ namespace Game2
         #region Variables
         public int Damage = 20;
         public int speed { get; set; }
-        private Texture2D Texture;
+        private AdvTexture Texture;
         public int X = 0;
         public int Y = 0;
         
@@ -36,7 +36,18 @@ namespace Game2
 
             this.speed = speed;
 
-            this.Texture = game.Content.Load<Texture2D>("Schuss");
+            this.Texture = new AdvTexture(
+                game.Content.Load<Texture2D>("Schuss2"),
+                new Vector2(64),
+                18,
+                25);
+
+            this.Texture.AnimationSequences.Add("Charge", new int[7] { 0, 1, 2, 3, 4, 5, 6 });
+            this.Texture.AnimationSequences.Add("Pulse", new int[8] { 7, 8, 9, 10, 11, 12, 13, 14 });
+            this.Texture.AnimationSequences.Add("Kill", new int[3] { 15, 16, 17 });
+
+            this.Texture.Play(false, "Charge");
+
 
 
             X = (int)position.X - Texture.Width / 2;
@@ -54,9 +65,18 @@ namespace Game2
         
         public override void Draw(GameTime gameTime)
         {
-            
 
-            ((Skyraha)this.Game).spriteBatch.Draw(this.Texture, new Rectangle(X, Y, Texture.Width, Texture.Height), (Color.White));
+            this.Texture.Draw(
+                gameTime,
+                ((Skyraha)this.Game).spriteBatch,
+                 new Rectangle(X, Y, Texture.Width/3, Texture.Height/3),
+                 Color.White,
+                 0,
+                 Vector2.Zero,
+                 SpriteEffects.None,
+                 0);
+
+            //((Skyraha)this.Game).spriteBatch.Draw(this.Texture, new Rectangle(X, Y, Texture.Width, Texture.Height), (Color.White));
 
 
 
@@ -73,10 +93,13 @@ namespace Game2
         public override void Update(GameTime gameTime)
         {
             Y = Y - speed;
-            
 
-            
+            if (!this.Texture.AnimationRunning)
+                this.Texture.Play(true, "Pulse");
 
+
+            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+                this.Texture.Play(false, "Kill");
 
 
             base.Update(gameTime);

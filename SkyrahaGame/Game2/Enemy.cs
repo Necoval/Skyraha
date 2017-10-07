@@ -35,7 +35,7 @@ namespace Game2
             this.Texture2 = game.Content.Load<Texture2D>("Feind");
 
             // Calculate ship position based on texture size
-            this.Position = Position - new Vector2(_Texture.Width, _Texture.Height) / 2;
+            this.Position = Position - new Vector2(Texture.Width, Texture.Height) / 2;
 
         }
 

@@ -14,22 +14,16 @@ namespace Game2
     public class Skyraha : Game 
     {
         GraphicsDeviceManager graphics;
-        
-        
         public SpriteBatch spriteBatch;
-
-        public int enemy = 0;
-        
-        
-        
         private Texture2D Texture;
         SpriteBatch spriteBatch2;
-        
+        public int X;
+        public int Y;
         Rectangle rectangle1;
         Rectangle rectangle2;
-
+         
         //get user's primary screen size...
-        
+
 
 
 
@@ -59,22 +53,13 @@ namespace Game2
             #region Units
 
 
-            Random random = new Random();
-
-            new Ship(this, "Player1", new Vector2(400,200));                 // Scheißen mit Space, Feinde Spawnen, Damag System
-            new Ship(this, "Player2", new Vector2(200, 200));
-            new Enemy(this, new Vector2(700, -100), 1, 60);
-            if (enemy == 1)
-            {
-                new Enemy(this, new Vector2(400,-100), 1, 60);
+            
 
 
 
-            }
+            new Player(this, new Vector2(X+100,Y+300));
 
-
-            new Player(this, new Vector2(300,300));
-
+            
 
             #endregion
 
@@ -137,15 +122,23 @@ namespace Game2
             rectangle2.Y += 5;
             #endregion
 
-            KeyboardState spawn = Keyboard.GetState();
-            if (spawn.IsKeyDown(Keys.Space))
-            {
-                enemy = enemy + 1;
-            }
-            else enemy = enemy - 1;
-            
+            KeyboardState state1 = Keyboard.GetState();
+            KeyboardState state2 = Keyboard.GetState();
 
-            #region Shoot
+
+            
+            
+            if (state1.IsKeyUp(Keys.Space) && (state2.IsKeyUp(Keys.Space)))
+            {
+                new Bullets(this, new Vector2(300,300), 2, 0);
+            }
+
+            if (state1.IsKeyUp(Keys.X) && (state2.IsKeyDown(Keys.X)))
+            {
+                new Enemy(this, new Vector2(400, -100), 1, 60);
+            }
+
+           
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -154,8 +147,8 @@ namespace Game2
 
 
 
-            #endregion
-            //Steuerung
+            
+          
 
 
 
