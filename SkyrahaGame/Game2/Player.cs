@@ -58,7 +58,7 @@ namespace Game2
 
             if (stateold.IsKeyUp(Keys.Space) && (statenew.IsKeyDown(Keys.Space)))
             {
-                new Bullets((Skyraha)Game,new Vector2 (Position.X + Texture.Width/2, Position.Y + Texture.Height/2), 2, 0.5f, this);
+                new Bullets((Skyraha)Game,new Vector2 (Position.X + Texture.Width/2, Position.Y + Texture.Height/2), 2, 1f, this);
             }
 
             statenew = stateold;

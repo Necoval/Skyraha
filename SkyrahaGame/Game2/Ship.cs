@@ -26,7 +26,7 @@ namespace Game2
         /// <summary>
         /// Healthpoints of the ship
         /// </summary>
-        public int Life { get; protected set; }
+        public int Life { get;  set; }
 
 
         /// <summary>

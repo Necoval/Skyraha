@@ -49,10 +49,10 @@ namespace Game2
               */
             #region Units
 
-            Random Spawn = new Random();
+            
 
 
-            new Enemy(this, new Vector2(400, -100), 1, 60);
+            new Enemy(this, new Vector2(400, 200), 0, 3);
 
 
             new Player(this, new Vector2(100,300));

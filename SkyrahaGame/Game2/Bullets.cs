@@ -123,7 +123,7 @@ namespace Game2
                     {
                         if (((Ship)comp).Hitbox.Intersects(this.Hitbox))
                         {
-                            //Ship Life =- Damage;
+                            ((Ship)comp).Life -= (int)Damage;
                             this.Visible = false;
                         }
                     }
