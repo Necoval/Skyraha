@@ -16,14 +16,11 @@ namespace Game2
         GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         private Texture2D Texture;
-        SpriteBatch spriteBatch2;
-        public int X;
-        public int Y;
+        SpriteBatch spriteBatch2;    
         Rectangle rectangle1;
         Rectangle rectangle2;
-        private KeyboardState statenew;
-        //get user's primary screen size...
-
+        
+        
 
 
 
@@ -58,7 +55,7 @@ namespace Game2
             new Enemy(this, new Vector2(400, -100), 1, 60);
 
 
-            new Player(this, new Vector2(X+100,Y+300));
+            new Player(this, new Vector2(100,300));
 
             
 
@@ -123,22 +120,11 @@ namespace Game2
             rectangle2.Y += 5;
             #endregion
 
-            KeyboardState stateold = Keyboard.GetState();
-            
-
-
-            
-            
-            if (stateold.IsKeyUp(Keys.Space) && (statenew.IsKeyDown(Keys.Space)))
-            {
-                new Bullets(this, new Vector2(300,300), 2, 0);
-            }
-
             
                 
             
 
-            statenew = stateold;
+            
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();

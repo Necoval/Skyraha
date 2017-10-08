@@ -37,6 +37,11 @@ namespace Game2
             // Calculate ship position based on texture size
             this.Position = Position - new Vector2(Texture.Width, Texture.Height) / 2;
 
+            
+
+            
+
+
         }
 
         /// <summary>
@@ -65,11 +70,12 @@ namespace Game2
 
             this.Position.Y = this.Position.Y + speed;
 
-            
 
 
 
 
+
+            base.Update(gameTime);
 
         }
     }

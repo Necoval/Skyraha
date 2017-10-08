@@ -13,11 +13,12 @@ namespace Game2
     {
 
         #region Variables
-        public int Damage = 20;
+        public float Damage = 0;
         public int speed { get; set; }
         private AdvTexture Texture;
-        public int X = 0;
-        public int Y = 0;
+        public Vector2 Position;
+        Rectangle Hitbox = new Rectangle();
+        Ship Owner;
         
 
         #endregion
@@ -29,15 +30,17 @@ namespace Game2
         /// <param name="position">spawn position</param>
         /// <param name="speed">bullet speed</param>
         /// <param name="Damage">damage of the bullet</param>
-        public Bullets(Skyraha game, Vector2 position, int speed, int Damage) : base(game)
+        public Bullets(Skyraha bullet, Vector2 position, int speed, float Damage, Ship Owner) : base(bullet)
 
         {
-            game.Components.Add(this);
+            bullet.Components.Add(this);
 
+            this.Damage = Damage;
+            this.Owner = Owner;
             this.speed = speed;
 
             this.Texture = new AdvTexture(
-                game.Content.Load<Texture2D>("Schuss2"),
+                bullet.Content.Load<Texture2D>("Schuss2"),
                 new Vector2(64),
                 18,
                 25);
@@ -50,8 +53,7 @@ namespace Game2
 
 
 
-            X = (int)position.X - Texture.Width / 2;
-            Y = (int)position.Y - Texture.Height / 2;
+            this.Position = position - (new Vector2(Texture.Width, Texture.Height) * Damage) / 2;
 
 
         }
@@ -66,15 +68,15 @@ namespace Game2
         public override void Draw(GameTime gameTime)
         {
 
-            this.Texture.Draw(
-                gameTime,
+            this.Texture.Draw(gameTime,
                 ((Skyraha)this.Game).spriteBatch,
-                 new Rectangle(X, Y, Texture.Width/3, Texture.Height/3),
-                 Color.White,
-                 0,
-                 Vector2.Zero,
-                 SpriteEffects.None,
-                 0);
+                new Rectangle((int)Position.X, (int)Position.Y,
+                (int)(Texture.Width * Damage), (int)(Texture.Height * Damage)),
+                Color.White,
+                0,
+                Vector2.Zero,
+                SpriteEffects.None,
+                0);
 
             //((Skyraha)this.Game).spriteBatch.Draw(this.Texture, new Rectangle(X, Y, Texture.Width, Texture.Height), (Color.White));
 
@@ -92,7 +94,12 @@ namespace Game2
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-            Y = Y - speed;
+
+            /// Set Speed of the Bullet
+            Position.Y = Position.Y - speed;
+
+
+            #region Bullet Animation Stages
 
             if (!this.Texture.AnimationRunning)
                 this.Texture.Play(true, "Pulse");
@@ -100,6 +107,31 @@ namespace Game2
 
             if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 this.Texture.Play(false, "Kill");
+            #endregion
+
+
+
+            /// Update the position of the Hitbox
+            Hitbox = new Rectangle((int)Position.X, (int)Position.Y,(int)(Texture.Width * Damage), (int)(Texture.Height * Damage));
+
+            /// CHeck if Hitbox Bullet hits Hittbox Ship
+            foreach(var comp in Game.Components)
+            {
+                if(comp is Ship)
+                {
+                    if ((Ship)comp != Owner )
+                    {
+                        if (((Ship)comp).Hitbox.Intersects(this.Hitbox))
+                        {
+                            //Ship Life =- Damage;
+                            this.Visible = false;
+                        }
+                    }
+                   
+                }
+            }
+
+
 
 
             base.Update(gameTime);

@@ -13,7 +13,7 @@ namespace Game2
     /// </summary>
     class Player : Ship
     {
-        
+        private KeyboardState statenew;
 
         /// <summary>
         /// Player Constructor
@@ -50,7 +50,20 @@ namespace Game2
             if (Down.IsKeyDown(Keys.S))
                 this.Position.Y += this.Speed;
 
+
+            #region Shoot 
+
+            KeyboardState stateold = Keyboard.GetState();
             
+
+            if (stateold.IsKeyUp(Keys.Space) && (statenew.IsKeyDown(Keys.Space)))
+            {
+                new Bullets((Skyraha)Game,new Vector2 (Position.X + Texture.Width/2, Position.Y + Texture.Height/2), 2, 0.5f, this);
+            }
+
+            statenew = stateold;
+
+            #endregion
 
 
         }

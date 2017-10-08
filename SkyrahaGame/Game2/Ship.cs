@@ -9,26 +9,40 @@ namespace Game2
     class Ship : DrawableGameComponent
     {
         #region Public Variables
+
+
         /// <summary>
         /// The ships name
         /// </summary>
         public string Name { get; protected set; }
+
 
         /// <summary>
         /// Points of this ship
         /// </summary>
         public int Points { get; protected set; }
 
+
         /// <summary>
         /// Healthpoints of the ship
         /// </summary>
         public int Life { get; protected set; }
 
+
         /// <summary>
         /// Position of the ship
         /// </summary>
         public Vector2 Position;
+
+
+        /// <summary>
+        /// Create Hitbox rectangle
+        /// </summary>
+        public Rectangle Hitbox = new Rectangle();
+
+
         #endregion
+
 
         #region Private Variables
         /// <summary>
@@ -41,6 +55,7 @@ namespace Game2
         /// </summary>
         protected Texture2D Texture;
         #endregion
+
 
         #region Constructors
         /// <summary>
@@ -96,6 +111,9 @@ namespace Game2
         /// <param name="gameTime">Current time in the update-loop</param>
         public override void Update(GameTime gameTime)
         {
+            /// Update the position of the Hitbox
+            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(Texture.Width), (int)(Texture.Height));
+
             base.Update(gameTime);
         }
 
