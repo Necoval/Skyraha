@@ -21,7 +21,7 @@ namespace Game2
         public int Y;
         Rectangle rectangle1;
         Rectangle rectangle2;
-        private KeyboardState state2;
+        private KeyboardState statenew;
         //get user's primary screen size...
 
 
@@ -41,20 +41,21 @@ namespace Game2
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-          /*
-            #region Window Settings
-           
-            graphics.IsFullScreen = true;
-            this.Window.IsBorderless = false;
-            graphics.ApplyChanges();
+            /*
+              #region Window Settings
 
-            #endregion
-            */
+              graphics.IsFullScreen = true;
+              this.Window.IsBorderless = false;
+              graphics.ApplyChanges();
+
+              #endregion
+              */
             #region Units
 
+            Random Spawn = new Random();
 
-            
 
+            new Enemy(this, new Vector2(400, -100), 1, 60);
 
 
             new Player(this, new Vector2(X+100,Y+300));
@@ -122,23 +123,22 @@ namespace Game2
             rectangle2.Y += 5;
             #endregion
 
-            KeyboardState state1 = Keyboard.GetState();
+            KeyboardState stateold = Keyboard.GetState();
             
 
 
             
             
-            if (state1.IsKeyUp(Keys.Space) && (state2.IsKeyDown(Keys.Space)))
+            if (stateold.IsKeyUp(Keys.Space) && (statenew.IsKeyDown(Keys.Space)))
             {
                 new Bullets(this, new Vector2(300,300), 2, 0);
             }
 
-            if (state1.IsKeyUp(Keys.X) && (state2.IsKeyDown(Keys.X)))
-            {
-                new Enemy(this, new Vector2(400, -100), 1, 60);
-            }
+            
+                
+            
 
-            state2 = state1;
+            statenew = stateold;
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
