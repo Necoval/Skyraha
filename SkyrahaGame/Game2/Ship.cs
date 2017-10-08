@@ -112,7 +112,7 @@ namespace Game2
         public override void Update(GameTime gameTime)
         {
             /// Update the position of the Hitbox
-            Hitbox = new Rectangle((int)Position.X, (int)Position.Y, (int)(Texture.Width), (int)(Texture.Height));
+            Hitbox = new Rectangle((int)Position.X + (Texture.Width / 4), (int)Position.Y + (Texture.Height / 4), (int)(Texture.Width)/2, (int)(Texture.Height)/2);
 
             base.Update(gameTime);
         }

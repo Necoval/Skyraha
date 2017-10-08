@@ -30,8 +30,10 @@ namespace Game2
         /// <param name="Life">Starting Lifes</param>
         public Enemy(Skyraha game, Vector2 Position, int speed, int Life = 100) : base(game, "Enemy", Position, Life)
         {
+            //assign speed to local speed
             this.speed = speed;
 
+            //assign enemy a texture
             this.Texture = game.Content.Load<Texture2D>("Feind");
 
             // Calculate ship position based on texture size
@@ -51,7 +53,7 @@ namespace Game2
         public override void Draw(GameTime gameTime)
         {
 
-
+            //Draw the Enemy Sprite
             ((Skyraha)this.Game).spriteBatch.Draw(Texture, new Rectangle((int)this.Position.X, (int)this.Position.Y, Texture.Width, Texture.Height), (Color.White));
 
 
@@ -67,11 +69,12 @@ namespace Game2
         /// <param name="gameTime"></param>
         public override void Update(GameTime gameTime)
         {
-
+            //Add Speed to the Coordinates of the enemy
             this.Position.Y = this.Position.Y + speed;
 
-
-
+             // Spawn Enemy
+             
+            
 
 
 
