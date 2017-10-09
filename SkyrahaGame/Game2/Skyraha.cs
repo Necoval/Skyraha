@@ -52,7 +52,7 @@ namespace Game2
             
 
 
-            new Enemy(this, new Vector2(400, 200), 0, 3);
+            new Enemy(this, new Vector2(400, 200), 0);
 
 
             new Player(this, new Vector2(100,300));
@@ -60,7 +60,7 @@ namespace Game2
             
 
             #endregion
-
+            
 
             rectangle1 = new Rectangle(0,0, 1920, 1080);
             rectangle2 = new Rectangle(0,-1080, 1920, 1080);

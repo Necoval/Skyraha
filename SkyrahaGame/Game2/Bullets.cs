@@ -105,8 +105,9 @@ namespace Game2
                 this.Texture.Play(true, "Pulse");
 
 
-            if (Keyboard.GetState().IsKeyDown(Keys.Space))
+            /*if (Keyboard.GetState().IsKeyDown(Keys.Space))
                 this.Texture.Play(false, "Kill");
+            */
             #endregion
 
 
@@ -119,12 +120,18 @@ namespace Game2
             {
                 if(comp is Ship)
                 {
-                    if ((Ship)comp != Owner )
+                    if ((Ship)comp != Owner) 
                     {
-                        if (((Ship)comp).Hitbox.Intersects(this.Hitbox))
+                        if (((Ship)comp).Hitbox.Intersects(this.Hitbox) && ((Ship)comp).Life > 0) 
                         {
-                            ((Ship)comp).Life -= (int)Damage;
-                            this.Visible = false;
+                            if (this.Visible == true)
+                            {
+                                ((Ship)comp).Life = ((Ship)comp).Life - Damage;
+
+                                this.Texture.Play(false, "Kill");
+                                this.Visible = false;
+                                
+                            }
                         }
                     }
                    

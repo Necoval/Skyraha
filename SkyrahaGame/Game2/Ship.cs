@@ -26,7 +26,7 @@ namespace Game2
         /// <summary>
         /// Healthpoints of the ship
         /// </summary>
-        public int Life { get;  set; }
+        public float Life { get;  set; }
 
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Game2
         /// <param name="Name">Name of the new</param>
         /// <param name="Position">Start Position</param>
         /// <param name="Life">Ships initial healthpoints</param>
-        public Ship(Skyraha Game, string Name, Vector2 Position, int Life = 100) : base(Game)
+        public Ship(Skyraha Game, string Name, Vector2 Position, float Life = 1.5f) : base(Game)
         {
             // Announce gameobject to maingame
             Game.Components.Add(this);

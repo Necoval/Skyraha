@@ -28,7 +28,7 @@ namespace Game2
         /// <param name="game"></param>
         /// <param name="Position">Starting Position</param>
         /// <param name="Life">Starting Lifes</param>
-        public Enemy(Skyraha game, Vector2 Position, int speed, int Life = 100) : base(game, "Enemy", Position, Life)
+        public Enemy(Skyraha game, Vector2 Position, int speed, float Life = 1.5f) : base(game, "Enemy", Position, Life)
         {
             //assign speed to local speed
             this.speed = speed;
@@ -72,10 +72,24 @@ namespace Game2
             //Add Speed to the Coordinates of the enemy
             this.Position.Y = this.Position.Y + speed;
 
-             // Spawn Enemy
-             
+            //enemy Movement
+
+            if (gameTime.ElapsedGameTime.Milliseconds >= 1000)
+            {
+                this.speed = 2;
+                    }
             
 
+            // Make enemy invisible if Life  reach zero
+
+            if (Life <= 0)
+            {
+                Visible = false;
+            }
+            else
+            {
+                Visible = true;
+            }
 
 
             base.Update(gameTime);
