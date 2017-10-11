@@ -40,7 +40,7 @@ namespace Game2
         /// </summary>
         public Rectangle Hitbox = new Rectangle();
 
-
+        
         #endregion
 
 
@@ -64,7 +64,7 @@ namespace Game2
         /// <param name="Name">Name of the new</param>
         /// <param name="Position">Start Position</param>
         /// <param name="Life">Ships initial healthpoints</param>
-        public Ship(Skyraha Game, string Name, Vector2 Position, float Life = 1.5f) : base(Game)
+        public Ship(Skyraha Game, string Name, Vector2 Position, float Life = 3f) : base(Game)
         {
             // Announce gameobject to maingame
             Game.Components.Add(this);
@@ -135,7 +135,7 @@ namespace Game2
         public void Kill()
         {
             // Healthpoints cant go into negative
-            if (Life > 0)
+            if (Life < 0)
             {
                 Life = 0;
             }

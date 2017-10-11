@@ -14,8 +14,8 @@ namespace Game2
     {
         #region Variables
         private int speed;
-        
-
+        private float speedX = 3f;
+        private int Timer = 0;
 
 
 
@@ -74,11 +74,24 @@ namespace Game2
 
             //enemy Movement
 
-            if (gameTime.ElapsedGameTime.Milliseconds >= 1000)
+            Position.X += speedX;
+
+            if (Position.X <= 50)
             {
-                this.speed = 2;
-                    }
-            
+                speedX = 3f;
+            }
+            if (Position.X >= 600)
+            {
+                speedX = -3f;
+            }
+
+            Timer += 10;
+            if (Timer == 2000 && Life > 0)
+            {
+                new Bullets((Skyraha)Game, new Vector2(Position.X + Texture.Width / 2, Position.Y + Texture.Height / 2), -1, 0.5f, this);
+                Timer = 0;
+            }
+
 
             // Make enemy invisible if Life  reach zero
 

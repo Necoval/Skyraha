@@ -16,6 +16,7 @@ namespace Game2
         GraphicsDeviceManager graphics;
         public SpriteBatch spriteBatch;
         private Texture2D Texture;
+        public Texture2D pausescreen;
         SpriteBatch spriteBatch2;    
         Rectangle rectangle1;
         Rectangle rectangle2;
@@ -52,7 +53,7 @@ namespace Game2
             
 
 
-            new Enemy(this, new Vector2(400, 200), 0);
+            new Enemy(this, new Vector2(200, 200), 0);
 
 
             new Player(this, new Vector2(100,300));
@@ -84,7 +85,7 @@ namespace Game2
 
             spriteBatch2 = new SpriteBatch(GraphicsDevice);
             Texture = this.Content.Load<Texture2D>("Hintergrund");
-                       
+            pausescreen = this.Content.Load<Texture2D>("Pause");
 
 
 
@@ -163,8 +164,9 @@ namespace Game2
             
             spriteBatch.Draw(Texture, rectangle1, Color.White);
             spriteBatch.Draw(Texture, rectangle2, Color.White);
-            
 
+
+           
 
 
 

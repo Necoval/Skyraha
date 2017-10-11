@@ -13,6 +13,10 @@ namespace Game2
     /// </summary>
     class Player : Ship
     {
+        private bool paused = false;
+
+
+
         private KeyboardState statenew;
 
         /// <summary>
@@ -21,7 +25,7 @@ namespace Game2
         /// <param name="game"></param>
         /// <param name="Position">Starting Position</param>
         /// <param name="Life">Starting Lifes</param>
-        public Player(Skyraha game, Vector2 Position, int Life = 100) : base(game, "Player", Position, Life)
+        public Player(Skyraha game, Vector2 Position, float Life = 1.5f) : base(game, "Player", Position, Life)
         {
 
         }
@@ -54,19 +58,48 @@ namespace Game2
             #region Shoot 
 
             KeyboardState stateold = Keyboard.GetState();
-            
 
-            if (stateold.IsKeyUp(Keys.Space) && (statenew.IsKeyDown(Keys.Space)))
+            if (Life > 0)
             {
-                new Bullets((Skyraha)Game,new Vector2 (Position.X + Texture.Width/2, Position.Y + Texture.Height/2), 2, 0.5f, this);
+                if (stateold.IsKeyUp(Keys.Space) && (statenew.IsKeyDown(Keys.Space)))
+                {
+                    new Bullets((Skyraha)Game, new Vector2(Position.X + Texture.Width / 2, Position.Y + Texture.Height / 2), 2, 0.5f, this);
+                }
             }
-
             statenew = stateold;
-
             #endregion
 
 
+            // Make Player invisible if Life reach zero and darken the Background after death
+
+            if (Life <= 0)
+            {
+                Visible = false;
+            }
+            else
+            {
+                Visible = true;
+            }
+
+
+
+
+            /*
+            if (Life < 0 )
+            {
+               paused = true;
+                if (paused == true)
+
+                {
+                    gameTime.TotalGameTime.Seconds += 0;
+                }
+            }
+
+
+            
+               */
         }
+        
 
     }
 }
