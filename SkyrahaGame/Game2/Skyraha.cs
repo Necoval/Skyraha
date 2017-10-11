@@ -50,11 +50,11 @@ namespace Game2
               */
             #region Units
 
-            
+
 
 
             new Enemy(this, new Vector2(200, 200), 0);
-
+            new Enemy(this, new Vector2(200, 20), 0);
 
             new Player(this, new Vector2(100,300));
 
