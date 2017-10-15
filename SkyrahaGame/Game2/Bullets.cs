@@ -130,7 +130,10 @@ namespace Game2
 
                                 this.Texture.Play(false, "Kill");
                                 this.Visible = false;
-                                
+                                if (((Ship)comp).Position.Y > 2000)
+                                {
+                                    Visible = false;
+                                }
                             }
                         }
                     }

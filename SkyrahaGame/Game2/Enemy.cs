@@ -16,9 +16,10 @@ namespace Game2
         private int speed;
         private float speedX = 3f;
         private int Timer = 0;
-
-
-
+        private int TimerSpawn;
+        Random shoot = new Random();
+        private int Timer2 = 0;
+        private int shootspeed = 0;
 
         #endregion
 
@@ -41,7 +42,8 @@ namespace Game2
 
             
 
-            
+
+
 
 
         }
@@ -85,12 +87,32 @@ namespace Game2
                 speedX = -3f;
             }
 
+            //enemy shooting interval
+
             Timer += 10;
-            if (Timer == 2000 && Life > 0)
+
+            if (Timer2 == 2000)
             {
-                new Bullets((Skyraha)Game, new Vector2(Position.X + Texture.Width / 2, Position.Y + Texture.Height / 2), -1, 0.5f, this);
-                Timer = 0;
+                int shootspeed = shoot.Next(1000, 2000);
             }
+
+            if (Timer == 0)
+            {
+                
+                if (Timer == shootspeed)
+                {
+                    if (Life > 0)
+                    {
+                        new Bullets((Skyraha)Game, new Vector2(Position.X + Texture.Width / 2, Position.Y + Texture.Height / 2), -1, 0.5f, this);
+                        Timer = 0;
+                        Timer2 = 0;
+                    }
+                }
+            }
+            
+            
+            
+            
 
 
             // Make enemy invisible if Life  reach zero
@@ -103,7 +125,15 @@ namespace Game2
             {
                 Visible = true;
             }
+            //enemy spawning interval
 
+            TimerSpawn += 10;
+
+            if (TimerSpawn == 4000)
+            {
+                new Enemy((Skyraha)Game, new Vector2(200, -200), 1);
+
+            }
 
             base.Update(gameTime);
 

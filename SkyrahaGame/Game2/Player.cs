@@ -4,7 +4,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+
 using System.Threading.Tasks;
+
 
 namespace Game2 
 {
@@ -13,7 +15,7 @@ namespace Game2
     /// </summary>
     class Player : Ship
     {
-        private bool paused = false;
+        
 
 
 
@@ -83,21 +85,17 @@ namespace Game2
 
 
 
+            //Game Over
 
-            /*
+            
             if (Life < 0 )
             {
-               paused = true;
-                if (paused == true)
-
-                {
-                    gameTime.TotalGameTime.Seconds += 0;
-                }
+                
             }
 
 
             
-               */
+               
         }
         
 
