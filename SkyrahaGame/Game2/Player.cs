@@ -72,6 +72,8 @@ namespace Game2
             #endregion
 
 
+            
+
             // Make Player invisible if Life reach zero and darken the Background after death
 
             if (Life <= 0)

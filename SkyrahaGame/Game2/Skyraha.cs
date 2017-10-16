@@ -10,20 +10,28 @@ namespace Game2
     /// This is the main type for your game.
     /// </summary>
     /// 
-    
-    public class Skyraha : Game 
+
+    public class Skyraha : Game
     {
         GraphicsDeviceManager graphics;
+
+
+        #region Textures
         public SpriteBatch spriteBatch;
         private Texture2D Texture;
         public Texture2D pausescreen;
-        SpriteBatch spriteBatch2;    
+        public Texture2D Hearts1;
+        public Texture2D Hearts2;
+        public Texture2D Hearts3;
+        SpriteBatch spriteBatch2;
         Rectangle rectangle1;
         Rectangle rectangle2;
-        
-        
+        #endregion
 
 
+  
+        private SpriteFont Font;
+        private int score = 0;
 
 
         public Skyraha()
@@ -34,7 +42,7 @@ namespace Game2
 
 
 
-        
+
 
         protected override void Initialize()
         {
@@ -56,21 +64,21 @@ namespace Game2
             new Enemy(this, new Vector2(200, -200), 0);
             new Enemy(this, new Vector2(200, 20), 0);
 
-            new Player(this, new Vector2(100,300));
+            new Player(this, new Vector2(100, 300));
 
-            
+
 
             #endregion
-            
 
-            rectangle1 = new Rectangle(0,0, 1920, 1080);
-            rectangle2 = new Rectangle(0,-1080, 1920, 1080);
+
+            rectangle1 = new Rectangle(0, 0, 1920, 1080);
+            rectangle2 = new Rectangle(0, -1080, 1920, 1080);
 
 
             base.Initialize();
         }
 
-        
+
 
 
 
@@ -85,24 +93,24 @@ namespace Game2
 
             spriteBatch2 = new SpriteBatch(GraphicsDevice);
             Texture = this.Content.Load<Texture2D>("Hintergrund");
-            pausescreen = this.Content.Load<Texture2D>("Pause");
-
-
-
-
+           
+            Font = Content.Load<SpriteFont>("Score");
+            Hearts1 = this.Content.Load<Texture2D>("Herz");
+            Hearts2 = this.Content.Load<Texture2D>("Herz");
+            Hearts3 = this.Content.Load<Texture2D>("Herz");
 
 
         }
 
-       
+
         protected override void UnloadContent()
         {
-         
+
 
             // TODO: Unload any non ContentManager content here
         }
 
-        
+
 
 
 
@@ -111,10 +119,10 @@ namespace Game2
         protected override void Update(GameTime gameTime)
         {
             #region Background
-            if (rectangle1.Y  >= 1080)
+            if (rectangle1.Y >= 1080)
                 rectangle1.Y = rectangle2.Y - Texture.Height;
 
-            if (rectangle2.Y  >= 1080)
+            if (rectangle2.Y >= 1080)
                 rectangle2.Y = rectangle1.Y - Texture.Height;
 
             rectangle1.Y += 5;
@@ -122,10 +130,11 @@ namespace Game2
             #endregion
 
             
-                
-            
 
-            
+            score += 1;
+
+
+
 
             if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
                 Exit();
@@ -134,24 +143,24 @@ namespace Game2
 
 
 
-            
-          
+
+
 
 
 
             base.Update(gameTime);
         }
 
-      
 
 
-        
-
-         
-        
 
 
-        
+
+
+
+
+
+
 
         protected override void Draw(GameTime gameTime)
         {
@@ -161,12 +170,13 @@ namespace Game2
 
             spriteBatch.Begin();
 
-            
+
             spriteBatch.Draw(Texture, rectangle1, Color.White);
             spriteBatch.Draw(Texture, rectangle2, Color.White);
-
-
-           
+            spriteBatch.DrawString(Font, "Score " + score, new Vector2(75, 70), Color.Black);
+            spriteBatch.Draw(Hearts1,new Rectangle(50,20,50,50),(Color.White));
+            spriteBatch.Draw(Hearts2, new Rectangle(100, 20, 50, 50), (Color.White));
+            spriteBatch.Draw(Hearts3, new Rectangle(150, 20, 50, 50), (Color.White));
 
 
 
