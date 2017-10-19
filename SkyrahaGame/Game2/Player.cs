@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
@@ -15,10 +16,13 @@ namespace Game2
     /// </summary>
     class Player : Ship
     {
-        
 
 
 
+
+        public Texture2D Hearts1;
+        public Texture2D Hearts2;
+        public Texture2D Hearts3;
         private KeyboardState statenew;
 
         /// <summary>
@@ -72,7 +76,7 @@ namespace Game2
             #endregion
 
 
-            
+
 
             // Make Player invisible if Life reach zero and darken the Background after death
 
@@ -89,17 +93,66 @@ namespace Game2
 
             //Game Over
 
-            
-            if (Life < 0 )
+
+            if (Life < 0)
             {
-                
+
             }
 
 
-            
-               
-        }
-        
+            // if life gets lets, hearts dissappear
 
+            if (Life == 1)
+            {
+                  
+             
+            }
+
+            
+
+        }
+
+
+
+        protected override void LoadContent()
+        {
+            // Create a new SpriteBatch, which can be used to draw textures.
+            ((Skyraha)this.Game).spriteBatch = new SpriteBatch(GraphicsDevice);
+
+
+            //Load Images
+
+
+
+
+
+            Hearts1 = ((Skyraha)this.Game).Content.Load<Texture2D>("Herz");
+            Hearts2 = ((Skyraha)this.Game).Content.Load<Texture2D>("Herz");
+            Hearts3 = ((Skyraha)this.Game).Content.Load<Texture2D>("Herz");
+
+
+        }
+
+
+
+        public override void Draw(GameTime gameTime)
+        {
+
+            ((Skyraha)this.Game).spriteBatch.Draw(Hearts1, new Rectangle(50, 20, 50, 50), (Color.White));
+            ((Skyraha)this.Game).spriteBatch.Draw(Hearts2, new Rectangle(100, 20, 50, 50), (Color.White));
+            ((Skyraha)this.Game).spriteBatch.Draw(Hearts3, new Rectangle(150, 20, 50, 50), (Color.White));
+
+            ((Skyraha)this.Game).spriteBatch.Draw(
+             Texture,
+             new Rectangle(
+             (int)Position.X,
+             (int)Position.Y,
+             Texture.Width,
+             Texture.Height),
+             (Color.White));
+        }
+
+
+        
     }
 }

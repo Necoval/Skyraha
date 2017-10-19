@@ -18,8 +18,7 @@ namespace Game2
         private int Timer = 0;
         private int TimerSpawn;
         Random shoot = new Random();
-        private int Timer2 = 0;
-        private int shootspeed = 0;
+        Random velocity = new Random();
 
         #endregion
 
@@ -75,40 +74,40 @@ namespace Game2
             this.Position.Y = this.Position.Y + speed;
 
             //enemy Movement
+            
+            int Velocity = velocity.Next(1, 4);
+
 
             Position.X += speedX;
 
             if (Position.X <= 50)
             {
-                speedX = 3f;
+                speedX = 3f + Velocity;
             }
             if (Position.X >= 600)
             {
-                speedX = -3f;
+                speedX = -3f - Velocity;
             }
 
             //enemy shooting interval
 
             Timer += 10;
 
-            if (Timer2 == 2000)
-            {
-                int shootspeed = shoot.Next(1000, 2000);
-            }
+           
+           
 
-            if (Timer == 0)
-            {
-                
-                if (Timer == shootspeed)
+                if (Timer >= 4000)
                 {
                     if (Life > 0)
                     {
                         new Bullets((Skyraha)Game, new Vector2(Position.X + Texture.Width / 2, Position.Y + Texture.Height / 2), -1, 0.5f, this);
+
+                        int shootspeed = shoot.Next(1000, 2000);
                         Timer = 0;
-                        Timer2 = 0;
+                        Timer += shootspeed;
                     }
                 }
-            }
+            
             
             
             

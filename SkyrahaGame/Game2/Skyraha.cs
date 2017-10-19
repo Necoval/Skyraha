@@ -20,9 +20,6 @@ namespace Game2
         public SpriteBatch spriteBatch;
         private Texture2D Texture;
         public Texture2D pausescreen;
-        public Texture2D Hearts1;
-        public Texture2D Hearts2;
-        public Texture2D Hearts3;
         SpriteBatch spriteBatch2;
         Rectangle rectangle1;
         Rectangle rectangle2;
@@ -95,9 +92,7 @@ namespace Game2
             Texture = this.Content.Load<Texture2D>("Hintergrund");
            
             Font = Content.Load<SpriteFont>("Score");
-            Hearts1 = this.Content.Load<Texture2D>("Herz");
-            Hearts2 = this.Content.Load<Texture2D>("Herz");
-            Hearts3 = this.Content.Load<Texture2D>("Herz");
+           
 
 
         }
@@ -174,9 +169,7 @@ namespace Game2
             spriteBatch.Draw(Texture, rectangle1, Color.White);
             spriteBatch.Draw(Texture, rectangle2, Color.White);
             spriteBatch.DrawString(Font, "Score " + score, new Vector2(75, 70), Color.Black);
-            spriteBatch.Draw(Hearts1,new Rectangle(50,20,50,50),(Color.White));
-            spriteBatch.Draw(Hearts2, new Rectangle(100, 20, 50, 50), (Color.White));
-            spriteBatch.Draw(Hearts3, new Rectangle(150, 20, 50, 50), (Color.White));
+
 
 
 
