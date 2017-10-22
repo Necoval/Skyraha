@@ -19,7 +19,7 @@ namespace Game2
 
 
 
-
+        
         public Texture2D Hearts1;
         public Texture2D Hearts2;
         public Texture2D Hearts3;
@@ -33,7 +33,7 @@ namespace Game2
         /// <param name="Life">Starting Lifes</param>
         public Player(Skyraha game, Vector2 Position, float Life = 1.5f) : base(game, "Player", Position, Life)
         {
-
+            
         }
 
 
@@ -100,15 +100,6 @@ namespace Game2
             }
 
 
-            // if life gets lets, hearts dissappear
-
-            if (Life == 1)
-            {
-                  
-             
-            }
-
-            
 
         }
 
@@ -122,9 +113,10 @@ namespace Game2
 
             //Load Images
 
+            
 
 
-
+            
 
             Hearts1 = ((Skyraha)this.Game).Content.Load<Texture2D>("Herz");
             Hearts2 = ((Skyraha)this.Game).Content.Load<Texture2D>("Herz");
@@ -138,10 +130,32 @@ namespace Game2
         public override void Draw(GameTime gameTime)
         {
 
-            ((Skyraha)this.Game).spriteBatch.Draw(Hearts1, new Rectangle(50, 20, 50, 50), (Color.White));
-            ((Skyraha)this.Game).spriteBatch.Draw(Hearts2, new Rectangle(100, 20, 50, 50), (Color.White));
-            ((Skyraha)this.Game).spriteBatch.Draw(Hearts3, new Rectangle(150, 20, 50, 50), (Color.White));
+            #region Hearts
 
+            //last heart dissapears when players life is 0
+            if (Life >= 0.5f)
+            {
+                ((Skyraha)this.Game).spriteBatch.Draw(Hearts1, new Rectangle(50, 20, 50, 50), (Color.White));
+            }
+
+
+            // second heart dissaperas when players life is smaler 1
+            if (Life >= 1f)
+            {
+                ((Skyraha)this.Game).spriteBatch.Draw(Hearts2, new Rectangle(100, 20, 50, 50), (Color.White));
+            }
+
+            // first heart dissapears if players life is smaller 1.5f
+
+            if (Life == 1.5f)
+            {
+                ((Skyraha)this.Game).spriteBatch.Draw(Hearts3, new Rectangle(150, 20, 50, 50), (Color.White));
+            }
+
+            #endregion
+
+
+            //Draw the player
             ((Skyraha)this.Game).spriteBatch.Draw(
              Texture,
              new Rectangle(
@@ -150,6 +164,12 @@ namespace Game2
              Texture.Width,
              Texture.Height),
              (Color.White));
+
+
+            
+                
+            
+            
         }
 
 

@@ -26,9 +26,9 @@ namespace Game2
         #endregion
 
 
-  
         private SpriteFont Font;
         private int score = 0;
+
 
 
         public Skyraha()
@@ -89,10 +89,11 @@ namespace Game2
             //Load Images
 
             spriteBatch2 = new SpriteBatch(GraphicsDevice);
-            Texture = this.Content.Load<Texture2D>("Hintergrund");
-           
+            Texture = Content.Load<Texture2D>("Hintergrund");
+
             Font = Content.Load<SpriteFont>("Score");
-           
+
+
 
 
         }
@@ -124,9 +125,17 @@ namespace Game2
             rectangle2.Y += 5;
             #endregion
 
-            
 
-            score += 1;
+
+            //add score for surviving
+            
+            /*
+              if (Player.Life <= 0)
+                { 
+                score += 1;
+                }
+            */
+
 
 
 
@@ -168,9 +177,9 @@ namespace Game2
 
             spriteBatch.Draw(Texture, rectangle1, Color.White);
             spriteBatch.Draw(Texture, rectangle2, Color.White);
-            spriteBatch.DrawString(Font, "Score " + score, new Vector2(75, 70), Color.Black);
 
 
+            spriteBatch.DrawString(Font, "Score" + score, new Vector2(75, 70), Color.Black);
 
 
 

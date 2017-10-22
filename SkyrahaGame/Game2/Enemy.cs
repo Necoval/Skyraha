@@ -96,7 +96,7 @@ namespace Game2
            
            
 
-                if (Timer >= 4000)
+                if (Timer >= 3000)
                 {
                     if (Life > 0)
                     {
