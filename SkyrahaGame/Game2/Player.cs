@@ -17,7 +17,7 @@ namespace Game2
     class Player : Ship
     {
 
-
+        static public int Death = 0; 
 
         
         public Texture2D Hearts1;
@@ -94,9 +94,9 @@ namespace Game2
             //Game Over
 
 
-            if (Life < 0)
+            if (Life <= 0)
             {
-
+                Death = 1;
             }
 
 
@@ -113,10 +113,10 @@ namespace Game2
 
             //Load Images
 
-            
 
 
-            
+
+
 
             Hearts1 = ((Skyraha)this.Game).Content.Load<Texture2D>("Herz");
             Hearts2 = ((Skyraha)this.Game).Content.Load<Texture2D>("Herz");

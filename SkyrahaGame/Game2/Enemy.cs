@@ -13,12 +13,14 @@ namespace Game2
 
     {
         #region Variables
+
         private int speed;
         private float speedX = 3f;
         private int Timer = 0;
         private int TimerSpawn;
         Random shoot = new Random();
         Random velocity = new Random();
+        Random spawner = new Random();
 
         #endregion
 
@@ -28,7 +30,7 @@ namespace Game2
         /// <param name="game"></param>
         /// <param name="Position">Starting Position</param>
         /// <param name="Life">Starting Lifes</param>
-        public Enemy(Skyraha game, Vector2 Position, int speed, float Life = 1.5f) : base(game, "Enemy", Position, Life)
+        public Enemy(Skyraha game, Vector2 Position, int speed, float Life = 2f) : base(game, "Enemy", Position, Life)
         {
             //assign speed to local speed
             this.speed = speed;
@@ -78,25 +80,26 @@ namespace Game2
             int Velocity = velocity.Next(1, 4);
 
 
+
             Position.X += speedX;
 
-            if (Position.X <= 50)
+            if (Position.X <= -50)
             {
                 speedX = 3f + Velocity;
             }
-            if (Position.X >= 600)
+            if (Position.X >= 730)
             {
                 speedX = -3f - Velocity;
             }
 
             //enemy shooting interval
 
-            Timer += 10;
+            Timer += 20;
 
            
            
 
-                if (Timer >= 3000)
+                if (Timer >= 3000 && Player.Death == 0)
                 {
                     if (Life > 0)
                     {
@@ -124,13 +127,17 @@ namespace Game2
             {
                 Visible = true;
             }
-            //enemy spawning interval
+
+
+            //enemy spawning interval and spawn position
 
             TimerSpawn += 10;
+            int Spawner = spawner.Next(50, 640);
 
-            if (TimerSpawn == 4000)
+
+            if (TimerSpawn == 4000 && Player.Death == 0)
             {
-                new Enemy((Skyraha)Game, new Vector2(200, -200), 1);
+                new Enemy((Skyraha)Game, new Vector2(Spawner, -200), 1);
 
             }
 

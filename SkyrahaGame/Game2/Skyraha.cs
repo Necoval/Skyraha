@@ -19,6 +19,7 @@ namespace Game2
         #region Textures
         public SpriteBatch spriteBatch;
         private Texture2D Texture;
+        private Texture2D Ende;
         public Texture2D pausescreen;
         SpriteBatch spriteBatch2;
         Rectangle rectangle1;
@@ -55,11 +56,10 @@ namespace Game2
               */
             #region Units
 
+            new Enemy(this, new Vector2(400,-200), 0);
+            new Enemy(this,new Vector2(400, 40),0);
 
-
-
-            new Enemy(this, new Vector2(200, -200), 0);
-            new Enemy(this, new Vector2(200, 20), 0);
+            //Create Player
 
             new Player(this, new Vector2(100, 300));
 
@@ -93,7 +93,7 @@ namespace Game2
 
             Font = Content.Load<SpriteFont>("Score");
 
-
+            Ende = Content.Load<Texture2D>("Relia");
 
 
         }
@@ -128,14 +128,15 @@ namespace Game2
 
 
             //add score for surviving
-            
-            /*
-              if (Player.Life <= 0)
-                { 
-                score += 1;
-                }
-            */
 
+
+
+            if (Player.Death != 1)
+            {
+                score += 1;
+            }
+            
+            
 
 
 
@@ -181,6 +182,11 @@ namespace Game2
 
             spriteBatch.DrawString(Font, "Score" + score, new Vector2(75, 70), Color.Black);
 
+            if (Player.Death == 1)
+            {
+                spriteBatch.Draw(Ende,new Rectangle(0,0,800,600), Color.White);
+                spriteBatch.DrawString(Font, "Score" + score, new Vector2(340, 270), Color.Black);
+            }
 
 
             base.Draw(gameTime);
