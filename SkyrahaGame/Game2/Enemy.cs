@@ -117,9 +117,9 @@ namespace Game2
             
 
 
-            // Make enemy invisible if Life  reach zero
+            // Make enemy invisible if Life  reach zero or out of the window
 
-            if (Life <= 0)
+            if (Life <= 0 || Position.Y >= 500)
             {
                 Visible = false;
             }

@@ -99,6 +99,12 @@ namespace Game2
             Position.Y = Position.Y - speed;
 
 
+            // make invisible if out of the window
+
+            if (Position.Y >= 500)
+            {
+                Visible = false;
+            }
             #region Bullet Animation Stages
 
             if (!this.Texture.AnimationRunning)
