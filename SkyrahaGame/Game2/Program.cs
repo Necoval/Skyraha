@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Game2
+namespace Skyraha
 {
 #if WINDOWS || LINUX
     /// <summary>

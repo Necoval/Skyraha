@@ -6,18 +6,18 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 
-namespace Game2
+namespace Skyraha
 {
 
     class Enemy : Ship
 
     {
+
         #region Variables
 
         private int speed;
-        private float speedX = 3f;
+        private float speedX = 2;
         private int Timer = 0;
-        private int TimerSpawn;
         Random shoot = new Random();
         Random velocity = new Random();
         Random spawner = new Random();
@@ -37,14 +37,6 @@ namespace Game2
 
             //assign enemy a texture
             this.Texture = game.Content.Load<Texture2D>("Feind");
-
-            // Calculate ship position based on texture size
-            this.Position = Position - new Vector2(Texture.Width, Texture.Height) / 2;
-
-            
-
-
-
 
 
         }
@@ -73,76 +65,67 @@ namespace Game2
         public override void Update(GameTime gameTime)
         {
             //Add Speed to the Coordinates of the enemy
-            this.Position.Y = this.Position.Y + speed;
+
+            this.Position.Y += ((float)Math.Sin((double)(Position.Y / this.Game.Window.ClientBounds.Height)) * 13f + 1) * 0.3f;
 
             //enemy Movement
-            
-            int Velocity = velocity.Next(1, 4);
+
+            float Velocity = 2;
 
 
+            var f = Position.X / this.Game.Window.ClientBounds.Width;
 
-            Position.X += speedX;
+            var k = 0.0f;
+            if (f < 0.5f)
+                k = (float)Math.Sin((double)f) * 3.0f + 1f;
+            else
+                k = (float)Math.Sin((double)f * -1 + 1) * 3.0f + 1f;
 
-            if (Position.X <= -50)
+
+            Position.X += speedX * k;
+
+            if (Position.X <= -0)
             {
-                speedX = 3f + Velocity;
+
+                speedX = Velocity;
             }
-            if (Position.X >= 730)
+            if (Position.X >= this.Game.Window.ClientBounds.Width - this.Texture.Width)
             {
-                speedX = -3f - Velocity;
+                speedX = -Velocity;
             }
+
+
+
 
             //enemy shooting interval
 
-            Timer += 20;
+            Timer += gameTime.ElapsedGameTime.Milliseconds;
 
-           
-           
 
-                if (Timer >= 3000 && Player.Death == 0)
+
+
+            if (Timer >= 600 && Player.Death == 0)
+            {
+                if (Life > 0)
                 {
-                    if (Life > 0)
-                    {
-                        new Bullets((Skyraha)Game, new Vector2(Position.X + Texture.Width / 2, Position.Y + Texture.Height / 2), -1, 0.5f, this);
+                    new Bullets((Skyraha)Game, new Vector2(Position.X + Texture.Width / 2, Position.Y + Texture.Height / 2), -2, 0.5f, this);
 
-                        int shootspeed = shoot.Next(1000, 2000);
-                        Timer = 0;
-                        Timer += shootspeed;
-                    }
+                    //int shootspeed = shoot.Next(1000, 2000);
+                    Timer = 0;
+                    //Timer += shootspeed;
                 }
-            
-            
-            
-            
-            
-
-
-            // Make enemy invisible if Life  reach zero or out of the window
-
-            if (Life <= 0 || Position.Y >= 500)
-            {
-                Visible = false;
-            }
-            else
-            {
-                Visible = true;
             }
 
 
-            //enemy spawning interval and spawn position
-
-            TimerSpawn += 10;
-            int Spawner = spawner.Next(50, 640);
 
 
-            if (TimerSpawn == 4000 && Player.Death == 0)
-            {
-                new Enemy((Skyraha)Game, new Vector2(Spawner, -200), 1);
-
-            }
 
             base.Update(gameTime);
 
         }
+
+        
+
+       
     }
 }

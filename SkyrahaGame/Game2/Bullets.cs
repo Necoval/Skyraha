@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Game2
+namespace Skyraha
 {
     class Bullets : DrawableGameComponent
     {
@@ -53,7 +53,7 @@ namespace Game2
 
 
 
-            this.Position = position - (new Vector2(Texture.Width, Texture.Height) * Damage) / 2;
+            this.Position = position - (new Vector2(Texture.Width, Texture.Height) * Damage) /2 ;
 
 
         }
@@ -72,7 +72,7 @@ namespace Game2
                 ((Skyraha)this.Game).spriteBatch,
                 new Rectangle((int)Position.X, (int)Position.Y,
                 (int)(Texture.Width * Damage), (int)(Texture.Height * Damage)),
-                Color.White,
+                Color.Red,
                 0,
                 Vector2.Zero,
                 SpriteEffects.None,
@@ -99,12 +99,6 @@ namespace Game2
             Position.Y = Position.Y - speed;
 
 
-            // make invisible if out of the window
-
-            if (Position.Y >= 500)
-            {
-                Visible = false;
-            }
             #region Bullet Animation Stages
 
             if (!this.Texture.AnimationRunning)
@@ -122,6 +116,8 @@ namespace Game2
             Hitbox = new Rectangle((int)Position.X, (int)Position.Y,(int)(Texture.Width * Damage), (int)(Texture.Height * Damage));
 
             /// CHeck if Hitbox Bullet hits Hittbox Ship
+
+            Ship ShipHit = null;
             foreach(var comp in Game.Components)
             {
                 if(comp is Ship)
@@ -132,23 +128,31 @@ namespace Game2
                         {
                             if (this.Visible == true)
                             {
-                                ((Ship)comp).Life = ((Ship)comp).Life - Damage;
-
-                                this.Texture.Play(false, "Kill");
-                                this.Visible = false;
-                                if (((Ship)comp).Position.Y > 2000)
-                                {
-                                    Visible = false;
-                                }
+                                ShipHit = (Ship)comp;
                             }
                         }
-                    }
-                   
+                    }                   
                 }
             }
-            
+
+            if(ShipHit != null)
+            {
+                ShipHit.Life = ShipHit.Life - Damage;
+
+                this.Texture.Play(false, "Kill");
+                Dispose();
+            }
 
 
+            // make invisible if out of the window
+
+            var screensize = this.Game.Window.ClientBounds;
+            screensize.X = 0;
+            screensize.Y = 0;
+            if (!screensize.Intersects(Hitbox))
+            {
+                Dispose();
+            }
 
             base.Update(gameTime);
         }
@@ -156,6 +160,13 @@ namespace Game2
         #endregion
 
 
+        protected override void Dispose(bool disposing)
+        {
+            if (Game.Components != null)
+                Game.Components.Remove(this);
+
+            base.Dispose(disposing);
+        }
 
 
 

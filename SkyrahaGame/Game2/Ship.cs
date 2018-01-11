@@ -1,7 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using System;
 
-namespace Game2
+namespace Skyraha
 {
     /// <summary>
     /// Ship Class Definition for constructing, drawing and updating the Ships
@@ -9,8 +10,6 @@ namespace Game2
     class Ship : DrawableGameComponent
     {
         #region Public Variables
-
-
         /// <summary>
         /// The ships name
         /// </summary>
@@ -38,11 +37,8 @@ namespace Game2
         /// <summary>
         /// Create Hitbox rectangle
         /// </summary>
-        public Rectangle Hitbox = new Rectangle();
-
-        
+        public Rectangle Hitbox = new Rectangle();        
         #endregion
-
 
         #region Private Variables
         /// <summary>
@@ -55,9 +51,7 @@ namespace Game2
         /// </summary>
         protected Texture2D Texture;
         #endregion
-
-
-        #region Constructors
+        
         /// <summary>
         /// Ship Constructor, for creating Ships and setting the parameters.
         /// </summary>
@@ -81,9 +75,7 @@ namespace Game2
 
 
         }
-        #endregion
-
-        #region Draw Method
+        
         /// <summary>
         /// Drawing the ship with the given parameters
         /// </summary>
@@ -102,45 +94,52 @@ namespace Game2
 
             base.Draw(gameTime);
         }
-        #endregion
-
-        #region Update Method
+        
         /// <summary>
         /// Updater, keeps the position etc. up to date
         /// </summary>
         /// <param name="gameTime">Current time in the update-loop</param>
         public override void Update(GameTime gameTime)
         {
-            /// Update the position of the Hitbox
-            Hitbox = new Rectangle((int)Position.X + (Texture.Width / 4), (int)Position.Y + (Texture.Height / 4), (int)(Texture.Width)/2, (int)(Texture.Height)/2);
+            /// Update the Hitbox
+            this.Hitbox = new Rectangle(
+                (int)Position.X + (Texture.Width / 4), // X
+                (int)Position.Y + (Texture.Height / 4), // Y
+                (int)(Texture.Width)/2, // Width
+                (int)(Texture.Height)/2); // Height
+
+
+            if (Life <= 0 || Position.Y >= this.Game.Window.ClientBounds.Height)
+            {
+                Dispose();
+            }
 
             base.Update(gameTime);
         }
 
-        #endregion
-
-        #region Other Methods
         /// <summary>
         /// Adds points to this ship
         /// </summary>
         /// <param name="Amount">Amount of added points</param>
         public void AddPoints(int Amount)
         {
-            Points += Amount;
+            this.Points += Amount;
         }
 
         /// <summary>
-        /// Death Function, kills the Ship if his life points reach zero
+        /// Death Function, kills the Ship if the life points reach zero
         /// </summary>
         public void Kill()
         {
-            // Healthpoints cant go into negative
-            if (Life < 0)
-            {
-                Life = 0;
-            }
+            this.Life = 0;
         }
-        #endregion
+
+        protected override void Dispose(bool disposing)
+        {
+            if(Game.Components != null)
+                Game.Components.Remove(this);
+
+            base.Dispose(disposing);
+        }
     }
 }
-

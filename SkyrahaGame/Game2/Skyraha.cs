@@ -2,9 +2,10 @@
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 
-namespace Game2
+namespace Skyraha
 {
     /// <summary>
     /// This is the main type for your game.
@@ -36,11 +37,24 @@ namespace Game2
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
+
+            this.Window.AllowUserResizing = true;
+
+            graphics.PreferredBackBufferHeight = 800;
+            graphics.PreferredBackBufferWidth = 1200;
+            graphics.ApplyChanges();
+
+            this.Window.ClientSizeChanged += Window_ClientSizeChanged;
+
+            this.Window.Title = "Skyraha";
         }
 
-
-
-
+        private void Window_ClientSizeChanged(object sender, EventArgs e)
+        {
+            graphics.PreferredBackBufferHeight = this.Window.ClientBounds.Height;
+            graphics.PreferredBackBufferWidth = this.Window.ClientBounds.Width;
+            graphics.ApplyChanges();
+        }
 
         protected override void Initialize()
         {
@@ -55,13 +69,12 @@ namespace Game2
               #endregion
               */
             #region Units
-
-            new Enemy(this, new Vector2(400,-200), 0);
-            new Enemy(this,new Vector2(400, 40),0);
+            
 
             //Create Player
 
             new Player(this, new Vector2(100, 300));
+
 
 
 
@@ -111,7 +124,9 @@ namespace Game2
 
 
 
-
+        float TimerSpawn = 2000;
+        float TimerSpawn2 = 2000;
+        Random random = new Random();
         protected override void Update(GameTime gameTime)
         {
             #region Background
@@ -125,6 +140,19 @@ namespace Game2
             rectangle2.Y += 5;
             #endregion
 
+
+            //enemy spawning interval and spawn position
+
+            TimerSpawn += gameTime.ElapsedGameTime.Milliseconds;
+            TimerSpawn2 += gameTime.ElapsedGameTime.Milliseconds;
+
+            if (TimerSpawn >= 2000 && Player.Death == 0)
+            {
+                int Spawner = random.Next(0, this.Window.ClientBounds.Width);
+                new Enemy(this, new Vector2(Spawner, 50), 1,2);
+                TimerSpawn = 0;
+            }
+            
 
 
             //add score for surviving
@@ -181,10 +209,12 @@ namespace Game2
 
 
             spriteBatch.DrawString(Font, "Score" + score, new Vector2(75, 70), Color.Black);
+            
+            spriteBatch.DrawString(Font, this.Components.Count().ToString(), new Vector2(75, 90), Color.Black);
 
             if (Player.Death == 1)
             {
-                spriteBatch.Draw(Ende,new Rectangle(0,0,800,600), Color.White);
+                
                 spriteBatch.DrawString(Font, "Score" + score, new Vector2(340, 270), Color.Black);
             }
 

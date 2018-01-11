@@ -1,31 +1,31 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Game2.Ship">
-    <Position X="3.75" Y="2.5" Width="1.5" />
+  <Class Name="Skyraha.Bullets" Collapsed="true">
+    <Position X="6.5" Y="1.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAEAQQgAAAAAAAAQAAAAAAAAAAAIABAABYAA=</HashCode>
-      <FileName>Ship.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Game2.Bullets">
-    <Position X="6.25" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAACAACAEAgAgAAAAAAAAAAAAAQAAAAIAAAAAAAA=</HashCode>
       <FileName>Bullets.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Game2.Player" Collapsed="true">
-    <Position X="1.5" Y="2.5" Width="1.5" />
+  <Class Name="Skyraha.Player" Collapsed="true">
+    <Position X="1.75" Y="2" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AMQBAAAAAAAAAgAAAAAAAAAAAAAABAAgAAAAAAAAAAQ=</HashCode>
       <FileName>Player.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Game2.Skyraha" Collapsed="true">
-    <Position X="4.75" Y="1" Width="1.5" />
+  <Class Name="Skyraha.Ship" Collapsed="true">
+    <Position X="2.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAQAEEAAAAAAAwAAAAAAAAAAAAAAAAgAAAAAAAAAAAQ=</HashCode>
-      <FileName>C:\Users\Agando\Desktop\Project Code\Skyraha\Skyraha.cs</FileName>
+      <HashCode>AAQAAAAAAGAUggAgAAAAAAQBAAAAAAAAAAIAAAABAAA=</HashCode>
+      <FileName>Ship.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Skyraha.Enemy" Collapsed="true">
+    <Position X="4.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQABAAEAAAAAgAAAAAAAAAAAAAAAQAAAAQAAAAEAAA=</HashCode>
+      <FileName>Enemy.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Font Name="Segoe UI" Size="9" />

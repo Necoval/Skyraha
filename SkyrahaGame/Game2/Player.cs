@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace Game2 
+namespace Skyraha 
 {
     /// <summary>
     /// Player Ship
@@ -69,7 +69,7 @@ namespace Game2
             {
                 if (stateold.IsKeyUp(Keys.Space) && (statenew.IsKeyDown(Keys.Space)))
                 {
-                    new Bullets((Skyraha)Game, new Vector2(Position.X + Texture.Width / 2, Position.Y + Texture.Height / 2), 2, 0.5f, this);
+                    new Bullets((Skyraha)Game, new Vector2(Position.X + Texture.Width / 2, Position.Y + Texture.Height / 2), 2, 1f, this);
                 }
             }
             statenew = stateold;
@@ -77,17 +77,7 @@ namespace Game2
 
 
 
-
-            // Make Player invisible if Life reach zero and darken the Background after death
-
-            if (Life <= 0)
-            {
-                Visible = false;
-            }
-            else
-            {
-                Visible = true;
-            }
+            
 
 
 
